@@ -1,0 +1,51 @@
+# 20 Nuanced Emotion Categories for Tri-Modal Classification
+
+emotions:
+  0: "neutral"
+  1: "joy"
+  2: "sadness"
+  3: "anger"
+  4: "fear"
+  5: "disgust"
+  6: "surprise"
+  7: "regret"           # 회한
+  8: "affection"        # 애틋함
+  9: "resignation"      # 체념
+  10: "contentment"     # 만족
+  11: "disappointment"  # 실망
+  12: "nostalgia"       # 향수
+  13: "guilt"           # 죄책감
+  14: "pride"           # 자부심
+  15: "shame"           # 수치심
+  16: "envy"            # 질투
+  17: "gratitude"       # 감사
+  18: "hope"            # 희망
+  19: "despair"         # 절망
+
+num_classes: 20
+
+# Emotion groups for analysis
+emotion_groups:
+  basic:
+    - "neutral"
+    - "joy"
+    - "sadness"
+    - "anger"
+    - "fear"
+    - "disgust"
+    - "surprise"
+
+  complex:
+    - "regret"
+    - "affection"
+    - "resignation"
+    - "contentment"
+    - "disappointment"
+    - "nostalgia"
+    - "guilt"
+    - "pride"
+    - "shame"
+    - "envy"
+    - "gratitude"
+    - "hope"
+    - "despair"

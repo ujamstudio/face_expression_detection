@@ -1,0 +1,85 @@
+# Tri-Modal Emotion Classification Model Configuration
+
+# Model Architecture
+model:
+  name: "tri_modal_context_classifier"
+  num_classes: 20
+
+# Vision Branch (PointNet for 3D Facial Mesh)
+vision:
+  num_points: 2048          # Number of points to sample from face mesh
+  input_shape: [2048, 3]    # (num_points, xyz_coordinates)
+  feature_dim: 128          # Output feature vector dimension
+  pointnet_filters: [64, 128, 1024]  # Conv1D filter sizes
+
+# Audio Branch (CNN for Spectrogram)
+audio:
+  spec_height: 128
+  spec_width: 128
+  input_shape: [128, 128, 3]  # (height, width, channels)
+  feature_dim: 128            # Output feature vector dimension
+  cnn_filters: [32, 64, 128]  # Conv2D filter sizes
+
+  # Spectrogram generation parameters
+  sample_rate: 16000
+  n_mels: 128
+  n_fft: 2048
+  hop_length: 512
+  duration: 3.0  # seconds per clip
+
+# Text Branch (BERT)
+text:
+  model_name: "bert-base-uncased"  # English BERT
+  max_length: 128                   # Maximum token sequence length
+  feature_dim: 768                  # BERT output dimension (fixed)
+  freeze_bert: true                 # Freeze BERT initially for transfer learning
+
+# Fusion Layer
+fusion:
+  combined_dim: 1024  # 128 (vision) + 128 (audio) + 768 (text)
+  hidden_dim: 256
+  dropout_rate: 0.5
+
+# Training
+training:
+  batch_size: 32
+  epochs: 100
+  learning_rate: 0.0001
+
+  # Learning rate for fine-tuning (when unfreezing BERT)
+  finetune_learning_rate: 0.000001
+
+  # Early stopping
+  patience: 15
+
+  # Data split
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+# Paths
+paths:
+  data_root: "data"
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  models: "models"
+  logs: "logs"
+
+  # Processed data subdirectories
+  face_meshes: "data/processed/face_meshes"
+  spectrograms: "data/processed/spectrograms"
+  transcripts: "data/processed/transcripts"
+
+# Data Augmentation
+augmentation:
+  # Audio augmentation
+  audio:
+    time_stretch: true
+    pitch_shift: true
+    add_noise: true
+
+  # Point cloud augmentation
+  pointcloud:
+    random_rotation: true
+    random_jitter: true
+    random_scale: true

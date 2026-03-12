@@ -1,0 +1,235 @@
+# 감정별 표정 규칙 정의
+# ARKit BlendShapes 기반 규칙 기반 분류
+
+emotions:
+  sadness:
+    name: "슬픔"
+    description: "입 벌림, 입꼬리 내림, 뺨 올림, 시선 아래, 눈꺼풀 처짐"
+    features:
+      mouth_open:
+        blendshapes: ["jawOpen"]
+        threshold: 0.2
+        weight: 20
+        description: "입 벌림"
+
+      mouth_frown:
+        blendshapes: ["mouthFrownLeft", "mouthFrownRight"]
+        threshold: 0.3
+        weight: 25
+        description: "입꼬리 내림"
+
+      cheek_raise:
+        blendshapes: ["cheekSquintLeft", "cheekSquintRight"]
+        threshold: 0.2
+        weight: 20
+        description: "뺨 올림 (눈 가늘게)"
+
+      opposing_tension:
+        requires: ["mouth_frown", "cheek_raise"]
+        threshold: 0.15
+        weight: 15
+        description: "입꼬리 내림 + 뺨 올림 동시 (반대 긴장)"
+
+      gaze_down:
+        blendshapes: ["eyeLookDownLeft", "eyeLookDownRight"]
+        threshold: 0.3
+        weight: 10
+        description: "시선 아래"
+
+      eyelid_droop:
+        blendshapes: ["eyeBlinkLeft", "eyeBlinkRight"]
+        threshold: [0.2, 0.6]  # 범위: 완전히 감지 않고 처진 상태
+        weight: 10
+        description: "눈꺼풀 처짐"
+
+    total_threshold: 70  # 70점 이상이면 슬픔 판정
+
+  joy:
+    name: "기쁨"
+    description: "입꼬리 올림, 뺨 올림 (진짜 웃음)"
+    features:
+      smile:
+        blendshapes: ["mouthSmileLeft", "mouthSmileRight"]
+        threshold: 0.3
+        weight: 40
+        description: "입꼬리 올림"
+
+      cheek_raise:
+        blendshapes: ["cheekSquintLeft", "cheekSquintRight"]
+        threshold: 0.2
+        weight: 30
+        description: "뺨 올림 (Duchenne smile)"
+
+      smile_and_cheek:
+        requires: ["smile", "cheek_raise"]
+        threshold: [0.3, 0.2]
+        weight: 20
+        description: "진짜 웃음 (입+뺨 동시)"
+
+      eye_wide:
+        blendshapes: ["eyeWideLeft", "eyeWideRight"]
+        threshold: 0.1
+        weight: 10
+        description: "눈 밝게"
+
+    total_threshold: 70
+
+  anger:
+    name: "분노"
+    description: "눈썹 내림, 입꼬리 내림, 입 다물기, 코 주름"
+    features:
+      brow_down:
+        blendshapes: ["browDownLeft", "browDownRight"]
+        threshold: 0.3
+        weight: 30
+        description: "눈썹 내림"
+
+      mouth_frown:
+        blendshapes: ["mouthFrownLeft", "mouthFrownRight"]
+        threshold: 0.2
+        weight: 25
+        description: "입꼬리 내림"
+
+      mouth_press:
+        blendshapes: ["mouthPucker"]
+        threshold: 0.3
+        weight: 25
+        description: "입 꽉 다물기"
+
+      nose_sneer:
+        blendshapes: ["noseSneerLeft", "noseSneerRight"]
+        threshold: 0.2
+        weight: 20
+        description: "코 주름"
+
+    total_threshold: 65
+
+  fear:
+    name: "공포"
+    description: "눈 크게, 눈썹 올림, 입 벌림"
+    features:
+      eye_wide:
+        blendshapes: ["eyeWideLeft", "eyeWideRight"]
+        threshold: 0.4
+        weight: 35
+        description: "눈 크게 뜨기"
+
+      brow_up:
+        blendshapes: ["browInnerUp", "browOuterUpLeft", "browOuterUpRight"]
+        threshold: 0.3
+        weight: 30
+        description: "눈썹 올리기"
+
+      jaw_open:
+        blendshapes: ["jawOpen"]
+        threshold: 0.3
+        weight: 25
+        description: "입 벌리기"
+
+      mouth_stretch:
+        blendshapes: ["mouthLeft", "mouthRight"]
+        threshold: 0.2
+        weight: 10
+        description: "입 옆으로"
+        aggregation: "max"  # 왼쪽 또는 오른쪽 중 큰 값
+
+    total_threshold: 70
+
+  disgust:
+    name: "혐오"
+    description: "코 주름, 윗입술 올리기"
+    features:
+      nose_sneer:
+        blendshapes: ["noseSneerLeft", "noseSneerRight"]
+        threshold: 0.3
+        weight: 40
+        description: "코 주름"
+
+      upper_lip:
+        blendshapes: ["mouthUpperUpLeft", "mouthUpperUpRight"]
+        threshold: 0.2
+        weight: 30
+        description: "윗입술 올리기"
+
+      mouth_frown:
+        blendshapes: ["mouthFrownLeft", "mouthFrownRight"]
+        threshold: 0.2
+        weight: 20
+        description: "입꼬리 내림"
+
+      cheek_raise:
+        blendshapes: ["cheekSquintLeft", "cheekSquintRight"]
+        threshold: 0.2
+        weight: 10
+        description: "뺨 올림"
+
+    total_threshold: 65
+
+  surprise:
+    name: "놀람"
+    description: "입 크게 벌림, 눈 크게, 눈썹 올림"
+    features:
+      jaw_open:
+        blendshapes: ["jawOpen"]
+        threshold: 0.5
+        weight: 40
+        description: "입 크게 벌리기"
+
+      eye_wide:
+        blendshapes: ["eyeWideLeft", "eyeWideRight"]
+        threshold: 0.3
+        weight: 30
+        description: "눈 크게 뜨기"
+
+      brow_up:
+        blendshapes: ["browInnerUp", "browOuterUpLeft", "browOuterUpRight"]
+        threshold: 0.3
+        weight: 30
+        description: "눈썹 올리기"
+
+    total_threshold: 70
+
+  neutral:
+    name: "중립"
+    description: "모든 표정 활성화가 낮음"
+    features:
+      low_activation:
+        all_blendshapes: true
+        threshold: 0.1  # 평균 활성화 < 0.1
+        weight: 100
+        description: "표정 변화 없음"
+
+    total_threshold: 50
+
+# 전역 설정
+settings:
+  # BlendShapes 정규화
+  normalize_blendshapes: true
+
+  # 여러 감정이 비슷한 점수일 때
+  min_confidence_gap: 10  # 1위와 2위 점수 차이가 10점 이상이어야 확실
+
+  # 로깅
+  verbose: false
+
+  # 감정 우선순위 (같은 점수일 때)
+  priority:
+    - "joy"
+    - "sadness"
+    - "anger"
+    - "fear"
+    - "surprise"
+    - "disgust"
+    - "neutral"
+
+# 복합 감정 (향후 확장)
+compound_emotions:
+  bittersweet:
+    requires: ["joy", "sadness"]
+    weights: [0.5, 0.5]
+    description: "씁쓸함 (기쁨+슬픔)"
+
+  anxious_anger:
+    requires: ["anger", "fear"]
+    weights: [0.6, 0.4]
+    description: "불안한 분노"

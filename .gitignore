@@ -1,0 +1,110 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Claude Code
+.claude/
+
+# Server logs
+*.log
+server.log
+
+# Data directories
+data/raw/
+data/processed/
+data/streaming/
+data/*.zip
+data/*.tar.gz
+
+# Model checkpoints
+models/
+*.h5
+*.keras
+*.ckpt
+*.pb
+*.pth
+
+# Logs
+logs/
+*.log
+tensorboard/
+wandb/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+temp_audio.wav
+
+# Cache
+.cache/
+*.cache
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Audio/Video files
+*.mp4
+*.avi
+*.mov
+*.wav
+*.mp3
+*.m4a
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+# Keep placeholder images
+!docs/images/*.png
+
+# 3D files
+*.ply
+# Keep JSON schemas
+!configs/*.json
+!**/*schema.json
+
+# Hugging Face cache
+~/.cache/huggingface/
+
+# Test outputs
+test_outputs/
+evaluation_results/
