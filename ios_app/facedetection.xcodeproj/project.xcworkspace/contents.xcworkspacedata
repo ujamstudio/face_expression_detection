@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "self:">
+   </FileRef>
+   <FileRef
+      location = "group:MeshVisualizationOptions.swift">
+   </FileRef>
+   <FileRef
+      location = "group:MESH_VISUALIZATION.md">
+   </FileRef>
+   <FileRef
+      location = "group:MESH_IMPLEMENTATION_SUMMARY.md">
+   </FileRef>
+   <FileRef
+      location = "group:INFOPLIST_FIX.md">
+   </FileRef>
+</Workspace>

@@ -30,6 +30,16 @@ ENV/
 .ipynb_checkpoints
 *.ipynb
 
+# Xcode
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
 # IDE
 .vscode/
 .idea/
@@ -52,8 +62,8 @@ data/streaming/
 data/*.zip
 data/*.tar.gz
 
-# Model checkpoints
-models/
+# Model checkpoints (trained weights only, not source code)
+/models/
 *.h5
 *.keras
 *.ckpt
