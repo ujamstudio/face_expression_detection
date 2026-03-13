@@ -5,6 +5,8 @@ A deep learning system that classifies **20 nuanced emotions** by fusing three m
 - **Audio**: Voice tone and prosody from mel-spectrogram analysis
 - **Text**: Semantic content from speech transcription
 
+![https://github.com/ujamstudio/face_expression_detection/releases/tag/Emotion_Detection]
+
 ## Architecture Overview
 
 ```
