@@ -1,5 +1,37 @@
 # Tri-Modal Emotion Classification System
 
+## ⚠️ Implementation Status
+
+> **This project is a work in progress.** The full tri-modal deep learning system described below is not yet complete. Here is what currently works:
+
+### ✅ Working Now
+| Component | Status | Notes |
+|-----------|--------|-------|
+| iOS ARKit data collection app | ✅ Complete | Captures 3D face mesh + blendshapes via TrueDepth camera |
+| WebSocket server | ✅ Complete | Receives and saves face data from iPhone |
+| Real-time live visualizer | ✅ Complete | Shows 3D mesh, blendshapes, and emotion prediction |
+| Rule-based emotion classifier | ✅ Working | 7 emotions using blendshape thresholds |
+
+### ⚠️ Partial / Basic Rules Only
+| Emotion | Status |
+|---------|--------|
+| Sadness | ⚠️ Threshold rules (not ML-trained) |
+| Joy | ⚠️ Basic rules only |
+| Anger | ⚠️ Basic rules only |
+| Fear | ⚠️ Basic rules only |
+| Disgust | ⚠️ Basic rules only |
+| Surprise | ⚠️ Basic rules only |
+| Neutral | ⚠️ Basic rules only |
+
+### 🔲 Not Yet Implemented
+- Tri-modal deep learning model (PointNet + Audio CNN + BERT fusion)
+- Audio CNN branch
+- BERT text encoder branch
+- 20-emotion fine-grained classification
+- Model training (data collection in progress)
+
+---
+
 A deep learning system that classifies **20 nuanced emotions** by fusing three modalities:
 - **Vision**: 3D facial mesh from iPhone TrueDepth camera (via ARKit)
 - **Audio**: Voice tone and prosody from mel-spectrogram analysis
